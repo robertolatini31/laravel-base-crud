@@ -24,7 +24,7 @@
         @yield('content')
        </main>
        <footer class="text-center p-3">
-        <h4 class="text-center p-3 text-primary">Made by Roberto&copy;</h4>
+        <h5 class="text-center p-3 text-primary">Made by Roberto&copy;</h5>
        </footer>
        <script src="{{asset('js/app.js')}}"></script>
     </body>
