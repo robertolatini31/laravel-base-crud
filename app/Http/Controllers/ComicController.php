@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comic;
+use App\Http\Requests\ComicRequest;
 use Illuminate\Http\Request;
 
 class ComicController extends Controller
@@ -35,12 +36,9 @@ class ComicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ComicRequest $request)
     {
-        $validated_data = $request->validate([
-            'title' => 'required',
-            'price' => 'required|numeric',
-        ]);
+        $validated_data = $request->validated();
         //dd($validated_data);
         Comic::create($validated_data);
 
@@ -66,7 +64,7 @@ class ComicController extends Controller
      */
     public function edit(Comic $comic)
     {
-        //
+        return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -76,9 +74,13 @@ class ComicController extends Controller
      * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comic)
+    public function update(ComicRequest $request, Comic $comic)
     {
-        //
+        $validated_data = $request->validated();
+
+        $comic->update($validated_data);
+
+        return redirect()->route('comics.index');
     }
 
     /**
