@@ -12,13 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'ComicController@index');
+Route::resource('comics', 'ComicController');
 
-Route::get('/', function () {
-    return view('comics.index');
-});
+// Route::get('/comics', 'ComicController@index')->name('comics.index');
+// Route::get('/comics/create', 'ComicController@create')->name('comics.create');
+// Route::post('/comics', 'ComicController@store')->name('comics.store');
 
-Route::get('/comics', 'ComicController@index')->name('comics.index');
-Route::get('/comics/create', 'ComicController@create')->name('comics.create');
-Route::post('/comics', 'ComicController@store')->name('comics.store');
-
-Route::get('/comics/{comic}', 'ComicController@show')->name('comics.show');
+// Route::get('/comics/{comic}', 'ComicController@show')->name('comics.show');
