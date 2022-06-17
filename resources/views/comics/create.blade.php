@@ -7,11 +7,20 @@ form
 @section('content')
 
 <div class="container">
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <form action="{{route('comics.store')}}" method="post">
     @csrf
   <div class="mb-3">
     <label for="title" class="form-label">Titolo</label>
-    <input type="title" class="form-control" name="title" id="title" aria-describedby="titlehelp">
+    <input type="title" class="form-control @error('title') is-invalid @enderror" name="title" id="title" aria-describedby="titlehelp">
     <div id="titlehelp" class="form-text">Inserire il titolo del fumetto</div>
   </div>
   <div class="mb-3">
@@ -26,7 +35,7 @@ form
   </div>
   <div class="mb-3">
     <label for="price" class="form-label">Prezzo</label>
-    <input type="text" class="form-control" name="price" id="price" aria-describedby="pricehelp">
+    <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" id="price" aria-describedby="pricehelp">
     <div id="pricehelp" class="form-text">Inserire il prezzo del fumetto</div>
   </div>
   <div class="mb-3">
