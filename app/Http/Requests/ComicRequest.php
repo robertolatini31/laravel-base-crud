@@ -27,7 +27,7 @@ class ComicRequest extends FormRequest
             'title' => 'required',
             'description' => 'nullable',
             'thumb' => 'nullable',
-            'price' => 'required|numeric',
+            'price' => 'required|numeric|max:999.99',
             'series' => 'nullable',
             'sale_date' => 'nullable',
             'type' => 'nullable',
